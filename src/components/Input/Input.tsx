@@ -1,7 +1,7 @@
 import React from 'react';
 import './Input.css';
 
-type InputPropType = {
+export type InputPropType = {
   label?: string;
   value?: string;
   placeholder: string;
@@ -14,6 +14,7 @@ const Input: React.FC<InputPropType> = (props) => {
     <div className='loginform'>
       {props.label && <label>{props.label}</label>}
       <input
+        data-testid='input-test'
         type={props.type}
         value={props.value}
         placeholder={props.placeholder}
