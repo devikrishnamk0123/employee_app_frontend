@@ -2,11 +2,12 @@
 /* eslint-disable padding-line-between-statements */
 import React from 'react';
 import './table.css';
-import data from '../../employee_details';
+//import data from '../../employee_details';
 import Status from '../Status/status';
 import { useNavigate } from 'react-router-dom';
 import PopUp from '../PopUp/popUp';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 //import '../../employee_details';
 //import data from '../../employee_details';
 const Table: React.FC = () => {
@@ -20,7 +21,12 @@ const Table: React.FC = () => {
     'Action'
   ];
 
+  const employeedData = useSelector((state:any) => {
+    return state.employees;
+  });
+
   const [showPopUp, setShowPopup] = useState(false);
+  const [empId, setDeleteId] = useState('');
 
   const navigate = useNavigate();
 
@@ -28,8 +34,9 @@ const Table: React.FC = () => {
     navigate(`/employees/${id}`);
   };
 
-  const deleteEmployee = (e) => {
+  const deleteEmployee = (id, e) => {
     setShowPopup(true);
+    setDeleteId(id);
     //alert('PopUpdisplayed');
     e.stopPropagation();
   };
@@ -53,7 +60,7 @@ const Table: React.FC = () => {
           </tr>
         </thead>
         <tbody className='body'>
-          {data.map((item) => (
+          {employeedData.map((item) => (
             <tr key={item.id} className='bodyrow' onClick={() => employeeClick(item.id)}>
               <td>{item.name}</td>
               <td>{item.id}</td>
@@ -65,7 +72,7 @@ const Table: React.FC = () => {
               <td>{item.experience}</td>
               <td className='Action'>
                 <div className='Images'>
-                  <img src='/assets/img/delete-181.png' onClick={(e) => deleteEmployee(e)}></img>
+                  <img src='/assets/img/delete-181.png' onClick={(e) => deleteEmployee(item.id, e)}></img>
                   <img src='/assets/img/edit-259.png' onClick={(e) => editEmployee(item.id, e)}></img>
                 </div>
               </td>
@@ -73,7 +80,7 @@ const Table: React.FC = () => {
           ))}
         </tbody>
       </table>
-      {showPopUp && <PopUp onClose = {() => setShowPopup(false)}/>}
+      {showPopUp && <PopUp onClose = {() => setShowPopup(false)} empId = {empId}/>}
     </>
   );
 };

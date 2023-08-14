@@ -1,11 +1,21 @@
 import React from 'react';
 import './popUp.css';
+import { useDispatch } from 'react-redux';
 
 type PopUpProps = {
   onClose: () => void;
+  empId: string;
 };
 
 const PopUp: React.FC<PopUpProps> = (props) => {
+  const dispatch = useDispatch();
+  const handleConfirm = () => {
+    dispatch({
+      type: 'Employee Delete',
+      payload: props.empId
+    });
+  };
+
   return (
     <div className='Popup'>
       <div className='close'>
@@ -15,7 +25,9 @@ const PopUp: React.FC<PopUpProps> = (props) => {
       <h4>Do you really want to delete</h4>
       <h4>employee?</h4>
       <div className='Buttons'>
-        <button className='Confirm'>Confirm</button>
+        <button className='Confirm' onClick={handleConfirm}>
+          Confirm
+        </button>
         <button className='Cancel' onClick={props.onClose}>
           Cancel
         </button>

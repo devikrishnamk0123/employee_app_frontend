@@ -6,6 +6,7 @@ import SubHeader from '../../components/Subheader/subheader';
 import Input from '../../components/Input/Input';
 import DropDown from '../../components/DropDown/dropDown';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const EditEmployee: React.FC = () => {
   const [details, setDetails] = useState({
@@ -15,11 +16,14 @@ const EditEmployee: React.FC = () => {
     Department: '',
     Role: '',
     Status: '',
-    Address: '',
+    FlatNo: '',
+    AddressLine1: '',
+    AddressLine2: '',
     Employee_ID: ''
   });
 
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   console.log(id);
   //console.log(props.empId);
@@ -33,7 +37,28 @@ const EditEmployee: React.FC = () => {
 
     tempDetails[key] = value;
     setDetails(tempDetails);
-    console.log(details);
+    //console.log(details);
+  };
+
+  const handleCreate = () => {
+    dispatch({
+      type: 'Employee Edit',
+      payload: {
+        employee: {
+          id: id,
+          name: details.employee_name,
+          joiningDate: details.JoiningDate,
+          isActive: details.Status,
+          experience: details.Experience,
+          role: details.Role,
+          departmentId: details.Department,
+          FlatNo: details.FlatNo,
+          AddressLine1: details.AddressLine1,
+          AddressLine2: details.AddressLine2,
+          Employee_ID: { id }
+        }
+      }
+    });
   };
 
   return (
@@ -72,7 +97,9 @@ const EditEmployee: React.FC = () => {
           <Input type='text' placeholder='Address Line 1' />
           <Input type='text' placeholder='Address Line 2' />
           <div className='Buttons'>
-            <button className='create'>Create</button>
+            <button className='create' onClick={handleCreate}>
+              Create
+            </button>
             <button className='cancel' onClick={handleCancel}>
               Cancel
             </button>

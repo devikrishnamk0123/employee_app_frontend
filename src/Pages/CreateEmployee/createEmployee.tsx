@@ -6,6 +6,7 @@ import SubHeader from '../../components/Subheader/subheader';
 import Input from '../../components/Input/Input';
 import DropDown from '../../components/DropDown/dropDown';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 const CreateEmployee: React.FC = () => {
   const [details, setDetails] = useState({
     employee_name: '',
@@ -14,7 +15,9 @@ const CreateEmployee: React.FC = () => {
     Department: '',
     Role: '',
     Status: '',
-    Address: ''
+    FlatNo: '',
+    AddressLine1: '',
+    AddressLine2: ''
   });
 
   const navigate = useNavigate();
@@ -22,12 +25,36 @@ const CreateEmployee: React.FC = () => {
     navigate('/employees');
   };
 
+  const dispatch = useDispatch();
+
+  const handleSave = () => {
+    dispatch({
+      type: 'Employee Create',
+      payload: {
+        employee: {
+          id: 10,
+          name: details.employee_name,
+          joiningDate: details.JoiningDate,
+          isActive: details.Status,
+          experience: details.Experience,
+          role: details.Role,
+          departmentId: details.Department,
+          Address: {
+            FlatNo: details.FlatNo,
+            AddressLine1: details.AddressLine1,
+            AddressLine2: details.AddressLine2
+          }
+        }
+      }
+    });
+  };
+
   const onChange = (key, value) => {
     const tempDetails = { ...details };
 
     tempDetails[key] = value;
     setDetails(tempDetails);
-    console.log(details.Department);
+    console.log(details);
   };
 
   return (
@@ -74,11 +101,26 @@ const CreateEmployee: React.FC = () => {
           onChange={(value) => onChange('Status', value)}
         />
         <div className='AddressAndButtons'>
-          <Input label='Address' type='text' placeholder='FlatNo' />
-          <Input type='text' placeholder='Address Line 1' />
-          <Input type='text' placeholder='Address Line 2' />
+          <Input
+            label='Address'
+            type='text'
+            placeholder='FlatNo'
+            onChange={(value) => onChange('FlatNo', value)}
+          />
+          <Input
+            type='text'
+            placeholder='Address Line 1'
+            onChange={(value) => onChange('AddressLine1', value)}
+          />
+          <Input
+            type='text'
+            placeholder='Address Line 2'
+            onChange={(value) => onChange('AddressLine2', value)}
+          />
           <div className='Buttons'>
-            <button className='save'>Save</button>
+            <button className='save' onClick={handleSave}>
+              Save
+            </button>
             <button className='cancel' onClick={handleCancel}>
               Cancel
             </button>

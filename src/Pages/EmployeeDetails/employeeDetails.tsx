@@ -6,10 +6,17 @@ import Header from '../../components/Header/header';
 import './employeeDetails.css';
 import Empdetails from '../../components/Details/details';
 import { useNavigate, useParams } from 'react-router-dom';
-import data from '../../employee_details';
+//import data from '../../employee_details';
+import { useSelector } from 'react-redux';
 const Details: FC = () => {
   const { id } = useParams();
-  const employee = data.find((emp) => emp.id === Number(id));
+  const employeesData = useSelector((state: any) => {
+    return state.employees;
+  });
+
+  const employee = employeesData.find((emp) => emp.id === Number(id));
+
+  console.log(employee);
 
   const navigate = useNavigate();
   const handleClick = () => {

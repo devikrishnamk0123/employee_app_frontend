@@ -1,7 +1,7 @@
 import React from 'react';
 import './details.css';
 type DetailsPropType = {
-  label: string;
+  label?: string;
   data: any;
 };
 

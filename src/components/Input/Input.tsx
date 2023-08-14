@@ -1,7 +1,7 @@
 import React from 'react';
 import './Input.css';
 
-type InputPropType = {
+export type InputPropType = {
   label?: string;
   value?: string;
   placeholder: string;

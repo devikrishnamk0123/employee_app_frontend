@@ -1,6 +1,12 @@
 import React from 'react';
 import './sidenav.css';
+import { useNavigate } from 'react-router-dom';
 const SideBar: React.FC = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/employees');
+  };
+
   return (
     <aside>
       <div className='div1'>
@@ -8,7 +14,12 @@ const SideBar: React.FC = () => {
       </div>
       <div className='sidebar'>
         <div className='sidebar1'>
-          <img className='icon-em' src='/assets/icons/icon.svg' alt='icon-em' />
+          <img
+            className='icon-em'
+            src='/assets/icons/icon.svg'
+            alt='icon-em'
+            onClick={handleClick}
+          />
 
           <p className='emp-list'>Employee List</p>
         </div>
