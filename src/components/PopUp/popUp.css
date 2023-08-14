@@ -1,0 +1,74 @@
+
+.Popup{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 209px;
+    justify-content: center;
+    align-items: center;
+    color: #474748;
+    height: 209px;
+    width: 400px;
+    transform: translate(-50%, -50%); /* Center the popup */
+    z-index: 10; 
+    position: absolute;
+    top:50%;
+    left: 50%;
+    background-color: #ffffff; 
+}
+.close{
+    margin-left: auto;
+}
+.close>img{
+    width: 25px;
+    height: 25px;
+    color: #474748;
+}
+
+h2{
+    font-weight: SemiBold;
+    font-family: Nunito;
+    color: black;
+    font-size: 16px;
+}
+
+h4{
+    font-weight: normal;
+    font-family: Nunito;
+    color:#474748;
+    font-size: 13px;
+    margin-top: 10px;
+
+}
+
+.Buttons{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 236px;
+    height: 35px;
+   
+}
+
+.Confirm{
+    width: 117px;
+    height: 35px;
+    background: #03AEEE 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #B0E6FA;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: Nunito;
+    font-weight: normal;
+}
+
+.Cancel{
+    width: 109px;
+    height: 35px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #63667A29;
+    border: 1px solid #63667A;
+    border-radius: 3px;
+    font: normal normal normal 13px Gotham;
+    letter-spacing: 0px;
+    color: #63667A;
+}

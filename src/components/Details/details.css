@@ -1,0 +1,18 @@
+.Label{
+    text-align: left;
+    font-family: Nunito;
+    font-weight: SemiBold;
+    font-size: 16px;
+    color: #8B8D9D;
+
+}
+
+.Data{
+    text-align: left;
+    letter-spacing: 0px;
+    color: #434552;
+    margin-top: 9px;
+    font-family: Nunito;
+    font-weight: SemiBold;
+    font-size: 16px;
+}

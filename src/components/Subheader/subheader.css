@@ -1,0 +1,78 @@
+.create-emp{
+
+   
+
+    margin-left: 300px;
+    margin-top: 20px;
+    background-color: white;
+
+    width: 1500px;
+
+    height: 60px;
+
+    margin-right: 10px;
+
+    border-radius: 7px;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: flex;
+    justify-content: space-between;
+
+  }
+ 
+
+
+  .create-emp-text{
+
+    font-weight: 500;
+    font-weight: bold;
+
+    padding-top: 20px; 
+
+    margin-left: 20px;
+
+    font-family: 'Montserrat';
+
+    color: black;
+
+    font-size: 20px;
+  }
+
+  .wrapper{
+    border-radius: 50px;
+    display: flex;
+    height:50px;
+    width:259px;
+    background: #EAF9FF 0% 0% no-repeat padding-box;
+
+  }
+
+  .text{
+    text-align: left;
+    color: #1F1F1F;
+    padding-top:10px;
+    padding-left: 20px;
+    font-family: Nunito Sans;
+    font-weight: Regular;
+    font-size: 20px;
+  }
+
+  .ButtonIcon{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #03AEEE;
+  }
+
+  .imagePlus{
+    background: transparent 0% 0% no-repeat padding-box;
+    top: 119px;
+    left: 1636px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    align-items: center;
+  }

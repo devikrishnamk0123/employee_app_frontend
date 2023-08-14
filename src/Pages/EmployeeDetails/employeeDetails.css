@@ -1,0 +1,21 @@
+/* .Employee-Details{
+    width:100%;
+} */
+
+.detail-card{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    background: #FDFDFD 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #9D9D9D29;
+    width: 1275px;
+    height: 232px;
+    margin-left: 300px;
+    margin-top:50px;
+    padding-left: 30px;
+}
+
+.detail-card>*{
+    padding-right: 30px;
+    width: 25%;
+}

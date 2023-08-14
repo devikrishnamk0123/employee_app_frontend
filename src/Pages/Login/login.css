@@ -1,0 +1,47 @@
+.Login{
+    display: flex;
+    width: 1920px;
+    background-color: #FFFFFF;
+    height: 100vh;
+}
+
+.LeftContainer{
+    margin: 20px 0 20px 20px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #B0E6FA 0% 0% no-repeat padding-box;
+}
+
+.RightContainer{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.imageWrapper{
+    width: 763px;
+    height: 763px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    width: 678px;
+    height: 678px;
+    border-radius: 50%;
+}
+
+.RightContainer>img{
+    width: 208px;
+    height: 45px;
+    border-radius: 0;
+    margin-right: 297px;
+    margin-bottom: 30px;
+}
