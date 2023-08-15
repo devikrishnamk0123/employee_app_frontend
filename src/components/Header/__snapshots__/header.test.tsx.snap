@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`If header works properly If header rendered properly 1`] = `
+<div
+  class="top-bar"
+  data-testid="test for header"
+/>
+`;
