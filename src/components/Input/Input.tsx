@@ -12,7 +12,7 @@ export type InputPropType = {
 const Input: React.FC<InputPropType> = (props) => {
   return (
     <div className='loginform'>
-      {props.label && <label>{props.label}</label>}
+      {props.label && <label data-testid='label test'>{props.label}</label>}
       <input
         data-testid='input-test'
         type={props.type}

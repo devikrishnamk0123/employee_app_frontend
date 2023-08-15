@@ -53,8 +53,23 @@ describe('If Input works properly', () => {
     render(<Input {...InputProps} />);
     const element = screen.getByTestId('input-test');
 
-    fireEvent.change(element);
+    fireEvent.change(element, { target: { value: 'hello all' } });
 
     expect(onChange).toBeCalledTimes(1);
+  });
+
+  test('If label works properly', () => {
+    const InputProps: InputPropType = {
+      type: 'text',
+      placeholder: 'hello',
+      label: 'Label for Input'
+    };
+
+    render(<Input {...InputProps} />);
+    const element = screen.getByTestId('label test');
+
+    console.log(element);
+
+    expect(element.innerHTML).toBe('Label for Input');
   });
 });

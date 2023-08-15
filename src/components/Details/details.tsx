@@ -1,6 +1,6 @@
 import React from 'react';
 import './details.css';
-type DetailsPropType = {
+export type DetailsPropType = {
   label: string;
   data: any;
 };
@@ -8,8 +8,10 @@ type DetailsPropType = {
 const Empdetails: React.FC<DetailsPropType> = (props) => {
   return (
     <div className='card'>
-      <div className='Label'>{props.label}</div>
-      <div className='Data'>{String(props.data)}</div>
+      <div className='Label' data-testid='details-label-test'>{props.label}</div>
+      <div className='Data' data-testid='details-test'>
+        {String(props.data)}
+      </div>
     </div>
   );
 };
