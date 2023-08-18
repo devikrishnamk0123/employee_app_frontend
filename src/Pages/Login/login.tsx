@@ -1,9 +1,10 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
+import { useLoginMutation } from './api';
 
 const Login: FC = () => {
   const [userName, setUsername] = useState('');
@@ -20,9 +21,23 @@ const Login: FC = () => {
       setError(true);
     } else {
       console.log('Hello');
-      navigate('/employees');
+      login({
+        email: userName,
+        password: passwordValue
+      });
     }
   };
+
+  const [login, { data, isSuccess }] = useLoginMutation();
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      localStorage.setItem('AuthKey', data.data);
+      console.log(data.employee.role);
+      localStorage.setItem('Role', data.employee.role);
+      navigate('/employees');
+    }
+  }, [data, isSuccess]);
 
   return (
     <div className='Login'>

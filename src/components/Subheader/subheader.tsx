@@ -1,7 +1,7 @@
 import React from 'react';
 import './subheader.css';
 
-type SubHeaderPropTypes = {
+export type SubHeaderPropTypes = {
   label: string;
   buttonLabel?: string;
   imgSrc?: string;
@@ -10,13 +10,22 @@ type SubHeaderPropTypes = {
 const SubHeader: React.FC<SubHeaderPropTypes> = (props) => {
   return (
     <div className='create-emp'>
-      <p className='create-emp-text'>{props.label}</p>
+      <p className='create-emp-text' data-testid='label test'>
+        {props.label}
+      </p>
       {props.buttonLabel && props.imgSrc && (
         <div className='wrapper'>
           <div className='ButtonIcon'>
-            <img className='imagePlus' src={props.imgSrc} onClick={props.onClick}></img>
+            <img
+              className='imagePlus'
+              src={props.imgSrc}
+              onClick={props.onClick}
+              data-testid='image test'
+            ></img>
           </div>
-          <div className='text'>{props.buttonLabel}</div>
+          <div className='text' data-testid='button label test'>
+            {props.buttonLabel}
+          </div>
         </div>
       )}
     </div>

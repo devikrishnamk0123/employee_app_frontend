@@ -4,6 +4,7 @@ export type DropDownPropsType = {
   label: string;
   options: string[];
   onChange?: (value: any) => void;
+  placeholder?: string;
 };
 
 const DropDown: React.FC<DropDownPropsType> = (props) => {

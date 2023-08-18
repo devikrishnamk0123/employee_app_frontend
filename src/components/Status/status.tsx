@@ -1,17 +1,18 @@
 import React from 'react';
 import './status.css';
 
-type StatusProps = {
-  isActive: boolean;
+export type StatusPropsTypes = {
+  isActive: string;
 };
 
-const Status: React.FC<StatusProps> = (props) => {
-  const status = props.isActive
-    ? { label: 'Active', color: '#D3F4BE' }
-    : { label: 'Inactive', color: '#FFBFBF' };
+const Status: React.FC<StatusPropsTypes> = (props) => {
+  const status =
+    props.isActive === 'Active'
+      ? { label: 'Active', color: '#D3F4BE' }
+      : { label: 'Inactive', color: '#FFBFBF' };
 
   return (
-    <div className='status' style={{ backgroundColor: status.color }}>
+    <div className='status' style={{ backgroundColor: status.color }} data-testid='status test'>
       {status.label}
     </div>
   );

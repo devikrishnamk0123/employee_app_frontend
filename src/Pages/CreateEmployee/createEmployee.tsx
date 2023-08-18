@@ -6,7 +6,13 @@ import SubHeader from '../../components/Subheader/subheader';
 import Input from '../../components/Input/Input';
 import DropDown from '../../components/DropDown/dropDown';
 import { useNavigate } from 'react-router-dom';
+//import { useDispatch } from 'react-redux';
+//import { addEmployee } from '../../actions/employeeActions';
+import { useCreateEmployeeMutation } from './createEmployeeapi';
+import { useGetDepartmentListQuery } from '../Employee/employeeapi';
 const CreateEmployee: React.FC = () => {
+  const [createEmployee, { data, isSuccess }] = useCreateEmployeeMutation();
+  const { data: departmentData } = useGetDepartmentListQuery();
   const [details, setDetails] = useState({
     employee_name: '',
     JoiningDate: '',
@@ -14,7 +20,16 @@ const CreateEmployee: React.FC = () => {
     Department: '',
     Role: '',
     Status: '',
-    Address: ''
+    FlatNo: '',
+    AddressLine1: '',
+    AddressLine2: '',
+    Email: '',
+    password: '',
+    city: 'Ekm',
+    state: 'kerala',
+    country: 'India',
+    pincode: '680101',
+    departmentId: 2
   });
 
   const navigate = useNavigate();
@@ -22,13 +37,47 @@ const CreateEmployee: React.FC = () => {
     navigate('/employees');
   };
 
+  const handleSave = () => {
+    createEmployee({
+      email: details.Email,
+      password: details.password,
+      name: details.employee_name,
+      joining_date: details.JoiningDate,
+      experience: Number(details.Experience),
+      department: details.Department,
+      role: details.Role,
+      status: details.Status,
+      address: {
+        flatNo: details.FlatNo,
+        address_line_1: details.AddressLine1,
+        address_line_2: details.AddressLine2,
+        city: details.city,
+        state: details.state,
+        country: details.country,
+        pincode: details.pincode
+      },
+      departmentId: setDepartmentId(details.Department)
+    });
+    if (data && isSuccess) console.log('Employee Added');
+  };
+  const setDepartmentId = (deptname) => {
+    if (deptname == 'Product Engineering') return 2;
+    if (deptname == 'Finance') return 3;
+
+    if (deptname == 'QA') return 4;
+    if (deptname == 'Design') return 5;
+    if (deptname == 'HR') return 8;
+    if (deptname == 'Manager') return 9;
+  };
   const onChange = (key, value) => {
     const tempDetails = { ...details };
 
     tempDetails[key] = value;
     setDetails(tempDetails);
-    console.log(details.Department);
+    console.log(details);
   };
+
+  if (!departmentData) return <div>Loading....</div>;
 
   return (
     <div>
@@ -60,12 +109,12 @@ const CreateEmployee: React.FC = () => {
         />
         <DropDown
           label={'Department'}
-          options={['HR', 'Finance', 'Product Management']}
+          options={departmentData.map((deptObj) => deptObj.name)}
           onChange={(value) => onChange('Department', value)}
         />
         <DropDown
           label={'Role'}
-          options={['Frontend', 'UI', 'Backend', 'Developer']}
+          options={['UI', 'HR', 'developer']}
           onChange={(value) => onChange('Role', value)}
         />
         <DropDown
@@ -73,12 +122,39 @@ const CreateEmployee: React.FC = () => {
           options={['Active', 'Inactive', 'Probation']}
           onChange={(value) => onChange('Status', value)}
         />
+        <Input
+          label='Email'
+          type='text'
+          placeholder='email'
+          onChange={(value) => onChange('Email', value)}
+        />
+        <Input
+          label='password'
+          type='password'
+          placeholder='password'
+          onChange={(value) => onChange('password', value)}
+        />
         <div className='AddressAndButtons'>
-          <Input label='Address' type='text' placeholder='FlatNo' />
-          <Input type='text' placeholder='Address Line 1' />
-          <Input type='text' placeholder='Address Line 2' />
+          <Input
+            label='Address'
+            type='text'
+            placeholder='FlatNo'
+            onChange={(value) => onChange('FlatNo', value)}
+          />
+          <Input
+            type='text'
+            placeholder='Address Line 1'
+            onChange={(value) => onChange('AddressLine1', value)}
+          />
+          <Input
+            type='text'
+            placeholder='Address Line 2'
+            onChange={(value) => onChange('AddressLine2', value)}
+          />
           <div className='Buttons'>
-            <button className='save'>Save</button>
+            <button className='save' onClick={handleSave}>
+              Save
+            </button>
             <button className='cancel' onClick={handleCancel}>
               Cancel
             </button>
